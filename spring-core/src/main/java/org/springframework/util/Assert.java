@@ -23,6 +23,13 @@ import java.util.function.Supplier;
 import org.springframework.lang.Nullable;
 
 /**
+ * 断言类
+ *
+ * 类都设置为抽象类：因为方法都是static方法，不需要实例，通过类就可以直接调用方法，所以将类设计为abstract很巧妙，abstract类正好不能被实例化。
+ *
+ * 校验不通过抛异常：校验不通过抛异常，而不是返回错误码。如果用错误码，在调用此方法的层次上，还需要有一层判断。当然采用哪种方式需要根据实际场景来定。
+ *
+ * 将错误信息封装在异常中：这样捕获异常后，根据封装的信息就可以知道错误的原因。
  * Assertion utility class that assists in validating arguments.
  *
  * <p>Useful for identifying programmer errors early and clearly at runtime.

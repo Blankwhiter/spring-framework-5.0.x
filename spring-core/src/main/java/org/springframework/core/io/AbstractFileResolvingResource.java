@@ -31,6 +31,10 @@ import java.nio.file.StandardOpenOption;
 import org.springframework.util.ResourceUtils;
 
 /**
+ * ------- 总的来说 AbstractFileResolvingResource基本url解析的特定资源 重写了AbstractResource方法
+ *
+ * 将url解析为文件引用的资源的抽象基类 例如UrlResource 和 ClassPathResource
+ *
  * Abstract base class for resources which resolve URLs into File references,
  * such as {@link UrlResource} or {@link ClassPathResource}.
  *

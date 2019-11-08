@@ -54,6 +54,12 @@ import org.springframework.core.io.Resource;
 @SuppressWarnings({"serial", "all"})
 public class XmlBeanFactory extends DefaultListableBeanFactory {
 
+	/**
+	 * Xm!BeanFactory对DefaultListableBeanFactory类进行了扩展，主 用于从 XML 文档中读
+	 * BeanDefinition ，对于注册及获取 bean 都是使用从父类 DefaultListab leBeanFactory 继承的方
+	 * 法去实现，而唯独与父类不同的个性化实现就是增加了 XmlBeanDefinitionReader 类型的 eader
+	 * 属性。XmlBeanFactory 中主要使用 reade 属性对资源文件进行读取和注册。
+	 */
 	private final XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(this);
 
 

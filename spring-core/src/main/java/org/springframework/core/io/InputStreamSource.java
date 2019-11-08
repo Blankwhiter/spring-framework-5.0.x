@@ -20,6 +20,11 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
+ * --------- 总的来说  InputStreamSource 接口定义了一种能力：InputStreamSource封装任何能够返回InputStream的类
+ *
+ * 一个简单获取输入流资源{@link InputStream}对象的接口。
+ * 这是Spring扩展的{@link Resource}接口的基础接口。
+ *
  * Simple interface for objects that are sources for an {@link InputStream}.
  *
  * <p>This is the base interface for Spring's more extensive {@link Resource} interface.
@@ -41,6 +46,11 @@ import java.io.InputStream;
 public interface InputStreamSource {
 
 	/**
+	 * ------ 总的来说 这个每次获得新的输入流
+	 *
+	 * 为基础资源的内容返回{@link InputStream}。
+	 * 预期每个调用都创建一个新的流。
+	 *
 	 * Return an {@link InputStream} for the content of an underlying resource.
 	 * <p>It is expected that each call creates a <i>fresh</i> stream.
 	 * <p>This requirement is particularly important when you consider an API such
