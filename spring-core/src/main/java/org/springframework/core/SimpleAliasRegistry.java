@@ -30,6 +30,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.StringValueResolver;
 
 /**
+ * -----总的来说 该类对别名注册提供一个样例的实现
  * 主要使用 map 作为 alias 的缓存，并对接口 AliasRegistry 进行实现
  *
  * Simple implementation of the {@link AliasRegistry} interface.

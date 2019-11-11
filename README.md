@@ -15,7 +15,7 @@
 # 2.Spring加载资源并装配对象过程
 
 1.注解了 ClassPathResource、AbstractFileResolvingResource、AbstractResource、Resource、InputStreamSource 
-
+2.注解了 AliasRegistry  SimpleAliasRegistry BeanDefinitionRegistry SingletonBeanRegistry  DefaultSingletonBeanRegistry
 ```java
 		//Spring加载资源并装配对象过程
 		//1.定义Spring配置文件

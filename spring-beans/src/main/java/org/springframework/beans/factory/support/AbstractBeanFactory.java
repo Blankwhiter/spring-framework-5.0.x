@@ -258,6 +258,12 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		}
 
 		else {
+			//			如果bean是原型模式并处于创建中，则抛出异常。
+			//			如果beanDefinitionMap中不存在对应beanName的BeanDefinition，那么尝试从parentBeanFactory中加载。
+			//			判断是否检查类型
+			//			从 mergedBeanDefinitions 中获取 beanName 对应的 RootBeanDefinition
+			//			检查dependes-on依赖
+
 			// Fail if we're already creating this bean instance:
 			// We're assumably within a circular reference.
 			if (isPrototypeCurrentlyInCreation(beanName)) {
@@ -282,19 +288,22 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					return parentBeanFactory.getBean(nameToLookup, requiredType);
 				}
 			}
-
+			//如果不是仅仅做类型检查则是创建bean，这里需要记录 将beanName缓存在alreadyCreatedz中
 			if (!typeCheckOnly) {
 				markBeanAsCreated(beanName);
 			}
 
 			try {
+				// 从容器中获取 beanName 相应的 GenericBeanDefinition，并将其转换为 RootBeanDefinition
 				final RootBeanDefinition mbd = getMergedLocalBeanDefinition(beanName);
+				// 检查给定的合并的 BeanDefinition
 				checkMergedBeanDefinition(mbd, beanName, args);
 
 				// Guarantee initialization of beans that the current bean depends on.
 				String[] dependsOn = mbd.getDependsOn();
 				if (dependsOn != null) {
 					for (String dep : dependsOn) {
+						//获取depends-on的属性值，如果depends-on的值存在 则添加进入dependentBeanMap缓存中
 						if (isDependent(beanName, dep)) {
 							throw new BeanCreationException(mbd.getResourceDescription(), beanName,
 									"Circular depends-on relationship between '" + beanName + "' and '" + dep + "'");

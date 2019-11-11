@@ -21,6 +21,7 @@ import org.springframework.core.ResolvableType;
 import org.springframework.lang.Nullable;
 
 /**
+ * -----总的来说 Spring对象工厂的最顶层接口，最基础的对象容器视图
  *
  * 用于访问SpringBean容器的根接口
  * 这是bean容器的客户端基本视图

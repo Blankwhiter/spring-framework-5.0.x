@@ -79,14 +79,28 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
+ * -----总的来说 该类具备spring bean工厂的功能（完成了所有默认功能的实现）。
+ *
+ *  ConfigurableListableBeanFactory和BeanDefinitionRegistry两个接口的默认spring实现：
+ * 一个基于bean定义元数据的成熟bean工厂，也可通过后置处理器进行扩展。
+ *
  * Spring's default implementation of the {@link ConfigurableListableBeanFactory}
  * and {@link BeanDefinitionRegistry} interfaces: a full-fledged bean factory
  * based on bean definition metadata, extensible through post-processors.
+ *
+ *
+ * 典型的用法是在访问bean之前 首先注册所有bean定义(可能从bean定义文件中读取)。
+ * 因此，在本地Bean定义表中，通过名称查找Bean是一种简便的操作，
+ * 它对预先解析的Bean定义元数据对象进行操作。
  *
  * <p>Typical usage is registering all bean definitions first (possibly read
  * from a bean definition file), before accessing beans. Bean lookup by name
  * is therefore an inexpensive operation in a local bean definition table,
  * operating on pre-resolved bean definition metadata objects.
+ *
+ * 要注意的是 特殊的bean定义格式的读取器是单独实现的，而不是通过bean工厂的子类实现的。
+ * 例如{@link PropertiesBeanDefinitionReader}
+ * 和 {@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader}
  *
  * <p>Note that readers for specific bean definition formats are typically
  * implemented separately rather than as bean factory subclasses:
